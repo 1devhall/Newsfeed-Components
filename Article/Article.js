@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Good Tunes',
+    date: 'Feb 12th, 2020',
+    firstParagraph: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus distinctio, corporis veniam odio nesciunt quae cupiditate ullam nam maiores? Iusto architecto qui similique nisi quod a nihil eaque, dolores consectetur? `,
+
+    secondParagraph: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus distinctio, corporis veniam odio nesciunt quae cupiditate ullam nam maiores? Iusto architecto qui similique nisi quod a nihil eaque, dolores consectetur? `,
+
+    thirdParagraph: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus distinctio, corporis veniam odio nesciunt quae cupiditate ullam nam maiores? Iusto architecto qui similique nisi quod a nihil eaque, dolores consectetur?`
   }
 ];
 
@@ -112,3 +121,44 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleP1 = document.createElement('p');
+  const articleP2 = document.createElement('p');
+  const articleP3 = document.createElement('p');
+  const articleExpand = document.createElement('span');
+
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(articleP1);
+  article.append(articleP2);
+  article.append(articleP3);
+  article.append(articleExpand);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleExpand.classList.add('expandButton');
+
+  articleTitle.textContent = title
+  articleDate.textContent = date
+  articleP1.textContent = firstParagraph
+  articleP2.textContent = secondParagraph
+  articleP3.textContent = thirdParagraph
+  articleExpand.textContent = 'Click Here'
+  
+  articleExpand.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article 
+}
+
+const articles = document.querySelector('.articles');
+
+
+data.map(data => {
+  console.log('creating article', data.title)
+  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
